@@ -6,46 +6,52 @@
     <title>Reading & Listening</title>
     <style>
         body {
-            font-family: sans-serif;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #191919;
+            color: #FFFFFF;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #191919;
+            margin: 0;
         }
-
         .text-container {
-            font-size: 1.5rem;
-            font-weight: bold;
             text-align: center;
-            background: #191919;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0px 0px rgba(0, 0, 0, 0.1);
             transition: opacity 1s ease-in-out;
+        }
+        .text-container .first-line {
+            font-size: 1.25rem;
+            font-weight: 300;
+            margin-bottom: 0.25rem;
+            opacity: 0.9;
+        }
+        .text-container .second-line {
+            font-size: 1.5rem;
+            font-weight: 500;
         }
     </style>
 </head>
 <body>
-
-    <div class="text-container" id="displayText">What are you reading today?</div>
-
+    <div class="text-container" id="displayText">
+        <div class="first-line">What are you</div>
+        <div class="second-line">Reading Today?</div>
+    </div>
     <script>
         const textElement = document.getElementById("displayText");
-        const texts = ["What are you reading today?", "What are you listening to today?"];
+        const texts = [
+            `<div class="first-line">What are you</div><div class="second-line">Reading Today?</div>`,
+            `<div class="first-line">What are you</div><div class="second-line">Listening To Today?</div>`
+        ];
         let index = 0;
-
         function switchText() {
             index = (index + 1) % texts.length;
-            textElement.style.opacity = 0; // Fade out effect
+            textElement.style.opacity = 0;
             setTimeout(() => {
-                textElement.textContent = texts[index];
-                textElement.style.opacity = 1; // Fade in effect
+                textElement.innerHTML = texts[index];
+                textElement.style.opacity = 1;
             }, 500);
         }
-
-        setInterval(switchText, 15000); // Switch every 15 seconds
+        setInterval(switchText, 15000);
     </script>
-
 </body>
 </html>
